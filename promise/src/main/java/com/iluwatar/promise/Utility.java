@@ -34,6 +34,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -114,7 +115,7 @@ public class Utility {
   public static String downloadFile(String urlString) throws MalformedURLException, IOException {
     LOGGER.info("Downloading contents from url: {}", urlString);
     URL url = new URL(urlString);
-    File file = File.createTempFile("promise_pattern", null);
+    File file = Files.createTempFile("promise_pattern", null).toFile();
     try (Reader reader = new InputStreamReader(url.openStream());
         BufferedReader bufferedReader = new BufferedReader(reader);
         FileWriter writer = new FileWriter(file)) {
